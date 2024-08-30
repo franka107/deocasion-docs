@@ -6,7 +6,7 @@ tags: [user-history, offer-debate, in-progress]
 
 ## 📋 Descripción General
 
-**Como** [Rol o Usuario],  
+**Como** [Adminitrador de organizacion],  
 **Quiero** debatir las ofertas creadas asociadas a la [Entidad o Evento],  
 **Para** observar y sugerir los precios de la tasación.
 
@@ -17,45 +17,28 @@ tags: [user-history, offer-debate, in-progress]
   - **Visualización:** Al debatir la oferta seleccionada, debe permitir a la [Rol o Usuario] visualizar el bien a debatir y el precio de tasación actual.
   - **Colocación de Contrapropuesta:** Debe permitir ingresar una contrapropuesta (numérico de 6 dígitos como máximo).
   - **Debate Individual:** El debate es individual para cada oferta.
-- [ ] **Cambio de Estado de la Oferta:** Se debe cambiar el estado de la oferta a [Nuevo Estado] al confirmar la nueva propuesta de la [Rol o Usuario].
+- [ ] **Cambio de Estado de la Oferta:** Se debe cambiar el estado de la oferta a [Debated (Debatida)] al confirmar la nueva propuesta de la Organizacion.
 - [ ] **Cambio de Estado del Evento:**
   - **Primera Oferta Debatida:** Si es la primera oferta debatida, se debe cambiar el estado del evento a [Nuevo Estado del Evento] y enviar notificaciones ([PSD-43](https://novaly-team.atlassian.net/browse/PSD-43)).
   - **Múltiples Debates:** Si se mantienen múltiples debates sobre una misma oferta, se debe almacenar la información ([PSD-40](https://novaly-team.atlassian.net/browse/PSD-40)).
 
 ## 🔗 Relación con Otros Elementos
 
-- **Épica/Módulo Relacionado:** [JIRA-124](https://novaly-team.atlassian.net/browse/JIRA-124)
+- **Épica/Módulo Relacionado:** [PSD-4](https://novaly-team.atlassian.net/browse/PSD-4)
 - **Endpoints Relacionados:**
-  - `POST /v1/offer-management/debate-offer`: Iniciar debate sobre una oferta.
-  - `PATCH /v1/offer-management/update-offer-status`: Actualizar el estado de una oferta.
-  - `PATCH /v1/event-management/update-status`: Cambiar el estado del evento.
-- **Tickets de Jira Relacionados:** [JIRA-123](https://novaly-team.atlassian.net/browse/JIRA-123)
+  - `POST /v1/offer-management/discuss-offer`: Iniciar debate sobre una oferta.
+- **Tickets de Jira Relacionados:** [PSD-38](https://novaly-team.atlassian.net/browse/PSD-38)
 - **Documentación Adicional:**
 
   - **Figma:**
-    - [Pantalla de Debate de Ofertas](https://www.figma.com/design/7h5bUXzvQMQYmOc7jNNm4b/Subastas-UI?node-id=1601-38911&t=1gF1Kx63LP3LUSWz-4)
+    - [Pantalla de Debate de Ofertas](https://www.figma.com/design/7h5bUXzvQMQYmOc7jNNm4b/Subastas-UI?node-id=1403-86450&t=812XUNk83O6rBg6K-4)
   - **Tipos en TypeScript:**
 
     ```ts
     type OfferDebateDto = {
       offerId: string;
-      counterProposal: number; // Máximo 6 dígitos
+      counterProposalAmount: number; // Máximo 6 dígitos
     };
-
-    enum OfferStatus {
-      Debated = 'DEBATED', // Estado tras confirmar propuesta
-      Awaiting = 'AWAITING', // Estado inicial de una oferta
-    }
-
-    type EventStatusDto = {
-      eventId: string;
-      status: EventStatus;
-    };
-
-    enum EventStatus {
-      InDebate = 'IN_DEBATE', // Estado cuando hay ofertas debatidas
-      Closed = 'CLOSED', // Estado final del evento
-    }
     ```
 
 ## 🧪 Pruebas y Calidad

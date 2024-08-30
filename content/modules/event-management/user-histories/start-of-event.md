@@ -20,18 +20,18 @@ tags: [user-history, event-management, automated]
 
 ## 🔗 Relación con Otros Elementos
 
-- **Épica/Módulo Relacionado:** [JIRA-400](https://novaly-team.atlassian.net/browse/JIRA-400)
+- **Épica/Módulo Relacionado:** [PSD-3](https://novaly-team.atlassian.net/browse/PSD-3)
 - **Endpoints Relacionados:**
-  - `GET /v1/event-management/start`: Iniciar un evento automáticamente.
-  - `GET /v1/offer-management/update-status`: Actualizar el estado de las ofertas del evento.
-- **Tickets de Jira Relacionados:** [JIRA-401](https://novaly-team.atlassian.net/browse/JIRA-401)
+  - `GET /v1/event-management/publish-event`: Iniciar un evento automáticamente.
+- **Tickets de Jira Relacionados:** [PSD-33](https://novaly-team.atlassian.net/browse/PSD-33)
+- [Pantalla figma](https://www.figma.com/design/7h5bUXzvQMQYmOc7jNNm4b/Subastas-UI?node-id=1403-94397&t=812XUNk83O6rBg6K-4)
 - **Documentación Adicional:**
+
   - **Tipos en TypeScript:**
+
     ```ts
-    type EventStartDto = {
-      id: string;
-      startDate: string; // Iso Format
-      status: 'IN_PROGRESS'; // Estado del evento tras el inicio
+    type Request = {
+      eventId: string;
     };
     ```
 

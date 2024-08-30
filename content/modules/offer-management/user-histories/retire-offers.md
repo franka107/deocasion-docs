@@ -4,6 +4,16 @@ title: Retiro de Ofertas
 tags: [user-history, offer-management, in-progress]
 ---
 
+SOS
+
+- El flujo es identico a confirmar ofertas
+- En el figma se equivocaron ya que manda a hacer retiro por cada uno, cuando en realidad es un retiro masivo
+- Respecto a acciones multiples por tabla:
+  1. Los checkboxes siempre se mostraran en los listados que requieran acciones masivas
+  2. Apenas se seleccione un row en el listado se mostraran las acciones correspondientes y se ocultaran los filtros y las acciones que venian por defecto (por ejemplo la acciones de 'Crear')
+  3. Las acciones apareceran como botones una lista horizontal
+  4. Una vez se culmine la accion se mostrara nuevamente el filtro, las acciones por defecto, y no habra ningun row selccionado
+
 ## 📋 Descripción General
 
 **Como** [Rol o Usuario],  
@@ -23,33 +33,26 @@ tags: [user-history, offer-management, in-progress]
 
 ## 🔗 Relación con Otros Elementos
 
-- **Épica/Módulo Relacionado:** [JIRA-125](https://novaly-team.atlassian.net/browse/JIRA-125)
+- **Épica/Módulo Relacionado:** [PSD-4](https://novaly-team.atlassian.net/browse/PSD-4)
 - **Endpoints Relacionados:**
-  - `POST /v1/offer-management/withdraw-offers`: Iniciar retiro de ofertas.
-  - `PATCH /v1/offer-management/update-offer-status`: Actualizar el estado de una oferta.
-  - `GET /v1/offer-management/list-offers`: Listar ofertas (debe excluir ofertas retiradas).
-- **Tickets de Jira Relacionados:** [JIRA-126](https://novaly-team.atlassian.net/browse/JIRA-126)
+
+  - `POST /v1/offer-management/retire-offers`: Confirmar ofertas.
+  - body:
+
+  ```jsonc
+  // Request:
+  {
+    "type": "all", // all-empty
+    "ids": ["as12-12321"],
+  }
+  ```
+
+- **Tickets de Jira Relacionados:** [PSD-39](https://novaly-team.atlassian.net/browse/PSD-39)
 - **Documentación Adicional:**
 
   - **Figma:**
-    - [Pantalla de Confirmación de Retiro](https://www.figma.com/design/7h5bUXzvQMQYmOc7jNNm4b/Subastas-UI?node-id=1728-58901&t=1gF1Kx63LP3LUSWz-4)
-  - **Tipos en TypeScript:**
-
-    ```ts
-    type WithdrawOffersDto = {
-      offerIds: string[];
-    };
-
-    enum OfferStatus {
-      Withdrawn = 'WITHDRAWN', // Estado tras retirar la oferta
-      Active = 'ACTIVE', // Estado inicial de una oferta
-    }
-
-    enum EventStatus {
-      Open = 'OPEN', // Estado inicial del evento
-      Closed = 'CLOSED', // Estado final del evento donde no se permiten cambios
-    }
-    ```
+    - [Accion Multiple](https://www.figma.com/design/QxF1XVIapZvLp1fKzlPSCp/Personal?node-id=1-2351&t=u8s4RAzAdbuUy5cr-4)
+    - [Flujo de dialogos](https://www.figma.com/design/7h5bUXzvQMQYmOc7jNNm4b/Subastas-UI?node-id=2086-49527&t=812XUNk83O6rBg6K-4)
 
 ## 🧪 Pruebas y Calidad
 

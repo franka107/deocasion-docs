@@ -22,23 +22,16 @@ tags: [user-history, audit, in-progress]
 
 ## 🔗 Relación con Otros Elementos
 
-- **Épica/Módulo Relacionado:** [JIRA-130](https://novaly-team.atlassian.net/browse/JIRA-130)
+- **Épica/Módulo Relacionado:** [PSD-48](https://novaly-team.atlassian.net/browse/PSD-48)
 - **Endpoints Relacionados:**
-  - `GET /v1/offer-management/debate-history`: Obtener el historial de debates de ofertas.
-- **Tickets de Jira Relacionados:** [JIRA-131](https://novaly-team.atlassian.net/browse/JIRA-131)
+  - `GET /v1/audit/find-audit-histories`: Obtener el historial de tasaciones.
+  - Backend ya lo dara ordenado, asi que no front no debe preocuparse por eso
+- **Tickets de Jira Relacionados:** [PSD-40](https://novaly-team.atlassian.net/browse/PSD-40)
 - **Documentación Adicional:**
-  - **Figma:**
-    - [Pantalla de Historial de Debate](https://www.figma.com/design/7h5bUXzvQMQYmOc7jNNm4b/Subastas-UI?node-id=1729-59020&t=1gF1Kx63LP3LUSWz-4)
-  - **Tipos en TypeScript:**
 
-    ```ts
-    type DebateHistoryDto = {
-      date: string; // Fecha y hora en formato ISO
-      user: string; // Usuario que realizó el debate
-      initialAmount: number; // Monto inicial
-      modifiedAmount: number; // Monto modificado
-    };
-    ```
+  - **Figma:**
+    - [Pantalla de Historial de Debate](https://www.figma.com/design/7h5bUXzvQMQYmOc7jNNm4b/Subastas-UI?node-id=1467-48256&t=812XUNk83O6rBg6K-4)
+  - **Tipos en TypeScript:**
 
 ## 🧪 Pruebas y Calidad
 

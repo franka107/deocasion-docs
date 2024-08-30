@@ -4,58 +4,56 @@ title: Confirmación de Ofertas
 tags: [user-history, offer-confirmation, in-progress]
 ---
 
+SOS
+
+El flujo es identico a retirar ofertas
+
+- Respecto a acciones multiples por tabla:
+  1. Los checkboxes siempre se mostraran en los listados que requieran acciones masivas
+  2. Apenas se seleccione un row en el listado se mostraran las acciones correspondientes y se ocultaran los filtros y las acciones que venian por defecto (por ejemplo la acciones de 'Crear')
+  3. Las acciones apareceran como botones una lista horizontal
+  4. Una vez se culmine la accion se mostrara nuevamente el filtro, las acciones por defecto, y no habra ningun row selccionado
+
 ## 📋 Descripción General
 
 **Como** [Administrador de Organizacion],  
-**Quiero** confirmar las ofertas creadas asociadas a la [Entidad o Evento],  
+**Quiero** confirmar las ofertas creadas asociadas a la [Organización],  
 **Para** registrar la aceptación de la tasación.
 
 ## 🎯 Criterios de Aceptación
 
-- [ ] **Funcionalidad Configurada para:** Esta funcionalidad debe estar configurada para [Rol o Usuario por defecto].
+- [ ] **Funcionalidad Configurada para:** Esta funcionalidad debe estar configurada para [Funcionalidad: Confirmar Ofertas].
 - [ ] **Aceptación Masiva de Ofertas:** La funcionalidad debe permitir la aceptación masiva de ofertas.
 - [ ] **Mensaje de Confirmación:** Al aceptar, debe mostrarse un mensaje pop-up de confirmación final con el texto: “¿Está seguro de aprobar las xx oferta(s) seleccionada(s)?” con las opciones:
   - Sí
   - No
 - [ ] **Acciones Tras Confirmación:**
-  - **Si se selecciona "Sí":** Cambiar el estado de las ofertas a [Nuevo Estado].
+  - **Si se selecciona "Sí":** Cambiar el estado de las ofertas a [Confirmed].
   - **Si se selecciona "No":** Regresar a la pantalla anterior.
-- [ ] **Cambio de Estado del Evento:** Cuando todas las ofertas del evento estén en estado [Estado Final], el estado del evento debe cambiar a [Nuevo Estado del Evento].
+- [ ] **Cambio de Estado del Evento:** Cuando todas las ofertas del evento estén en estado [Confirmed], el estado del evento debe cambiar a [ReadyToPublish].
 
 ## 🔗 Relación con Otros Elementos
 
-- **Épica/Módulo Relacionado:** [JIRA-123](https://novaly-team.atlassian.net/browse/JIRA-123)
+- **Épica/Módulo Relacionado:** [PSD-37](https://novaly-team.atlassian.net/browse/PSD-37)
 - **Endpoints Relacionados:**
-  - `POST /v1/offer-management/accept-offers`: Aceptar ofertas.
-  - `GET /v1/event-management/status`: Obtener el estado del evento.
-- **Tickets de Jira Relacionados:** [JIRA-122](https://novaly-team.atlassian.net/browse/JIRA-122)
+
+  - `POST /v1/offer-management/confirm-offers`: Confirmar ofertas.
+  - body:
+
+  ```jsonc
+  // Request:
+  {
+    "type": "all", // all-empty
+    "ids": ["as12-12321"],
+  }
+  ```
+
+- **Tickets de Jira Relacionados:** [PDS-37](https://novaly-team.atlassian.net/browse/PSD-37)
 - **Documentación Adicional:**
-
   - **Figma:**
-    - [Pantalla de Confirmación de Aceptación](https://www.figma.com/design/7h5bUXzvQMQYmOc7jNNm4b/Subastas-UI?node-id=1521-34420&t=1gF1Kx63LP3LUSWz-4)
-  - **Tipos en TypeScript:**
+    - [Flujo de confirmacion de ofertas](https://www.figma.com/design/7h5bUXzvQMQYmOc7jNNm4b/Subastas-UI?node-id=1403-86452&t=812XUNk83O6rBg6K-4)
 
-    ```ts
-    type OfferAcceptanceDto = {
-      offerIds: string[];
-    };
-
-    enum OfferStatus {
-      Accepted = 'ACCEPTED',
-      Pending = 'PENDING',
-      Rejected = 'REJECTED',
-    }
-
-    type EventStatusDto = {
-      eventId: string;
-      status: EventStatus;
-    };
-
-    enum EventStatus {
-      Open = 'OPEN',
-      Closed = 'CLOSED',
-    }
-    ```
+o
 
 ## 🧪 Pruebas y Calidad
 
@@ -75,7 +73,7 @@ tags: [user-history, offer-confirmation, in-progress]
 
 - **Fecha de Inicio:** 30/08/2024
 - **Fecha Estimada de Finalización:** 05/09/2024
-- **Desarrolladores Responsables:** Frank Cary, Christian Gomez
+- **Desarrolladores Responsables:** Frank Cary
 
 ## 📷 Capturas de Pantalla / Mockups
 
@@ -90,11 +88,6 @@ tags: [user-history, offer-confirmation, in-progress]
 
 ### Repositorio y Rama
 
-- **Repositorio:** [Enlace al repositorio]
-- **Rama de Desarrollo:** [Nombre de la rama]
-
-### Consideraciones Técnicas
-
 - [ ] **Revisar Compatibilidad:** Asegurarse de que la nueva funcionalidad sea compatible con los módulos existentes.
 - [ ] **Actualizar Documentación:** Modificar la documentación técnica si es necesario para reflejar los cambios.
 
@@ -106,13 +99,7 @@ tags: [user-history, offer-confirmation, in-progress]
 
 ## 📑 Notas y Comentarios
 
-- **Notas Adicionales:** La funcionalidad debe ser intuitiva para facilitar la aceptación masiva de ofertas y la confirmación final del cambio de estado.
-
 ## 📞 Contactos Relevantes
-
-- **Product Owner:** [Nombre y contacto]
-- **QA Responsable:** [Nombre y contacto]
-- **UI/UX Designer:** [Nombre y contacto]
 
 ## 🔍 Revisión Final
 
